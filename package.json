@@ -1,10 +1,13 @@
 {
+  "homepage": "https://Mgwailinoo.github.io/drill-machine-shop",
   "name": "newproject",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "vite build",
     "preview": "vite preview"
   },
@@ -26,6 +29,7 @@
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.8.1",
     "react-slick": "^0.29.0",
+    "react-transition-group": "^4.4.5",
     "react-use-cart": "^1.13.0",
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",

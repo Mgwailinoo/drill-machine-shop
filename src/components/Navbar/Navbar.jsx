@@ -41,7 +41,7 @@ const NavbarContainer = styled.nav`
   flex-direction: column;
 
   width: 100vw;
-  background-color: gray;
+  background-color: #f0ece6;
   color: #000;
 `;
 const Container = styled.div`
@@ -49,8 +49,8 @@ const Container = styled.div`
   margin: 0 auto;
 `;
 const FirstNav = styled.div`
-  background-color: yellow;
-
+  background-color: #1a0b5c;
+  color: #fff;
   padding: 1rem;
   font-size: 1rem;
 `;
@@ -73,10 +73,10 @@ const FlexBox = styled.div`
 
 const LogoText = styled.h2`
   font-size: 5rem;
-  color: #000;
+  color: #3b3141;
 
   span {
-    color: yellow;
+    color: #fff700;
   }
 `;
 
@@ -100,11 +100,11 @@ const NavIconBox = styled.div`
     font-size: 1rem;
     font-style: italic;
     font-weight: 400;
-    color: #000;
+    color: #3b3141;
     text-align: left;
   }
   div span p {
-    color: #000;
+    color: #3b3141;
     font-size: 1.2rem;
     display: inline;
   }
@@ -112,7 +112,7 @@ const NavIconBox = styled.div`
 
 const NavIcon = styled.div`
   padding: 1rem;
-  background-color: yellow;
+  background-color: #fff700;
   border-right: 1px solid #777;
 `;
 
@@ -127,7 +127,7 @@ const CartBadge = styled.span`
   position: absolute;
   top: -4px;
   right: -10px;
-  background-color: yellow;
+  background-color: #fff700;
 
   font-size: 25px;
   border-radius: 20px;
@@ -385,7 +385,7 @@ const Navbar = () => {
                   <CartBtn>
                     <Link to="/wishlist">
                       <svg
-                        fill="#000"
+                        fill="#3b3141"
                         width="25px"
                         height="25px"
                         xmlns="http://www.w3.org/2000/svg"
@@ -400,7 +400,7 @@ const Navbar = () => {
                   <CartBtn>
                     <Link to="/cart">
                       <svg
-                        fill="#000"
+                        fill="#3b3141"
                         width="25px"
                         height="25px"
                         xmlns="http://www.w3.org/2000/svg"
@@ -428,8 +428,8 @@ const Navbar = () => {
                           fontSize="2rem"
                           padding="1rem"
                           marginRight="1rem"
-                          _selected={{ backgroundColor: "yellow" }}
-                          _hover={{ backgroundColor: "yellow" }}
+                          _selected={{ backgroundColor: "#FFF700" }}
+                          _hover={{ backgroundColor: "#FFF700" }}
                           as={Link}
                           to={navItem.href}
                         >

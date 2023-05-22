@@ -82,7 +82,9 @@ const Cart = () => {
             </g>
           </svg>
           <Heading>Empty Cart</Heading>
-          <Button fontSize={"1.5rem"}>Go To Shop</Button>
+          <Link to="/handtools">
+            <Button fontSize={"1.5rem"}>Go To Shop</Button>
+          </Link>
         </Flex>
       ) : (
         <Flex gap={"1rem"}>

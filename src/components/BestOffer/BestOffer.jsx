@@ -48,7 +48,7 @@ const BestOffer = () => {
             }}
           >
             <Heading color="white">NEW STUFF </Heading>
-            <Heading color="yellow">HERE</Heading>
+            <Heading color="#FFF700">HERE</Heading>
           </Box>
         </Box>
         <Box
@@ -72,7 +72,7 @@ const BestOffer = () => {
             }}
           >
             <Heading color="white">NEW STUFF </Heading>
-            <Heading color="yellow">HERE</Heading>
+            <Heading color="#FFF700">HERE</Heading>
           </Box>
           <Text sx={{ padding: "2rem", fontSize: "1.6rem", color: "#fff" }}>
             --Coming Soon--
@@ -99,7 +99,7 @@ const BestOffer = () => {
             }}
           >
             <Heading color="white">NEW STUFF </Heading>
-            <Heading color="yellow">HERE</Heading>
+            <Heading color="#FFF700">HERE</Heading>
           </Box>
         </Box>
       </Box>

@@ -40,14 +40,14 @@ const Brand = () => {
 
         <Box sx={{ display: "flex", gap: "1rem" }}>
           <Button
-            sx={{ bgColor: "yellow", boxSize: "3rem" }}
+            sx={{ bgColor: "#FFF700", boxSize: "3rem" }}
             onClick={() => sliderRef.current.slickPrev()}
           >
             <ChevronLeftIcon fontSize="3rem" />
           </Button>
 
           <Button
-            sx={{ bgColor: "yellow", boxSize: "3rem" }}
+            sx={{ bgColor: "#FFF700", boxSize: "3rem" }}
             onClick={() => sliderRef.current.slickNext()}
           >
             <ChevronRightIcon fontSize="3rem" />

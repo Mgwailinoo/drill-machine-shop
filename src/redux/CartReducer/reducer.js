@@ -1,5 +1,6 @@
 import Products from "../../components/Product/Products";
 import * as data from "./actionType";
+
 const getDefaultCart = () => {
   let cart = [];
   for (let i = 0; i < Products.length + 1; i++) {
@@ -9,9 +10,9 @@ const getDefaultCart = () => {
 };
 
 const init = {
-  cart: [],
+  cart: JSON.parse(localStorage.getItem("cart")) || getDefaultCart(),
 };
-console.log("InIt", init);
+
 const cartReducer = (state = init, action) => {
   const { type, payload } = action;
 
@@ -36,7 +37,9 @@ const cartReducer = (state = init, action) => {
         };
         newCart = [...state.cart, newPayload];
       }
-      return { ...state, cart: newCart };
+      const newState = { ...state, cart: newCart };
+      localStorage.setItem("cart", JSON.stringify(newState.cart));
+      return newState;
     }
 
     case data.IN_QTY: {
@@ -47,8 +50,9 @@ const cartReducer = (state = init, action) => {
           return item;
         }
       });
-
-      return { ...state, cart: newChangeCart };
+      const newState = { ...state, cart: newChangeCart };
+      localStorage.setItem("cart", JSON.stringify(newState.cart));
+      return newState;
     }
 
     case data.DEC_QTY: {
@@ -59,22 +63,29 @@ const cartReducer = (state = init, action) => {
           return item;
         }
       });
-
-      return { ...state, cart: newChangeCart };
+      const newState = { ...state, cart: newChangeCart };
+      localStorage.setItem("cart", JSON.stringify(newState.cart));
+      return newState;
     }
 
     case data.REMOVE_QTY: {
       let blankTheCart = state.cart?.filter((item) => {
         return !(item.id === payload.id);
       });
-      return { ...state, cart: blankTheCart };
+      const newState = { ...state, cart: blankTheCart };
+      localStorage.setItem("cart", JSON.stringify(newState.cart));
+      return newState;
     }
+
     case data.CLEAR_QTY: {
-      return { ...state, cart: (state.cart = []) };
+      const newState = { ...state, cart: [] };
+      localStorage.setItem("cart", JSON.stringify(newState.cart));
+      return newState;
     }
 
     default:
       return state;
   }
 };
+
 export { cartReducer };

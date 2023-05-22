@@ -99,7 +99,7 @@ const Product = (props) => {
         <ButtonGroup spacing="2">
           <Button
             variant="solid"
-            colorScheme={isInWishlist ? "yellow" : "blue"}
+            colorScheme={isInWishlist ? "#FFF700" : "blue"}
             size="lg"
             onClick={isInWishlist ? handleremoveWishList : handleAddWishList}
           >

@@ -29,12 +29,13 @@ import Products from "../Product/Products";
 import Product from "../Product/Product";
 import { StarIcon, ViewIcon } from "@chakra-ui/icons";
 import ListViewProduct from "./ListViewProduct";
+import { useHistory } from "react-router-dom";
 
 const ProductLists = () => {
   const [showGrid, setShowGrid] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(Products.length); // <-- new state
-
+  const history = useHistory();
   const totalItems = Products.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage); // <-- use the new state variable
   const startIndex = (currentPage - 1) * itemsPerPage; // <-- use the new state variable
@@ -47,6 +48,7 @@ const ProductLists = () => {
 
   const handleNextPage = () => {
     setCurrentPage((prev) => prev + 1);
+    history.push(`/page/${currentPage + 1}`);
   };
 
   const handlePageClick = (page) => {
@@ -105,7 +107,7 @@ const ProductLists = () => {
               fontSize={"2rem"}
               _hover={{ color: "yellow.500" }}
               _focus={{ color: "red" }}
-              sx={{ color: showGrid ? "yellow" : "gray" }}
+              sx={{ color: showGrid ? "#FFF700" : "gray" }}
               onClick={() => setShowGrid(true)}
             />
             <Icon
@@ -114,7 +116,7 @@ const ProductLists = () => {
               _hover={{ color: "yellow.500" }}
               _focus={{ color: "red" }}
               onClick={() => setShowGrid(false)}
-              sx={{ color: showGrid ? "gray" : "yellow" }}
+              sx={{ color: showGrid ? "gray" : "#FFF700" }}
             />
           </Flex>
           <Select
@@ -178,6 +180,7 @@ const ProductLists = () => {
       <Flex justify="center" my={10}>
         <ButtonGroup mt={10}>
           {currentPage > 1 && <Button onClick={handlePrevPage}>Prev</Button>}
+
           {Array.from({ length: totalPages }, (_, i) => (
             <Button
               key={i}
@@ -187,6 +190,7 @@ const ProductLists = () => {
               {i + 1}
             </Button>
           ))}
+
           {currentPage < totalPages && (
             <Button onClick={handleNextPage}>Next</Button>
           )}

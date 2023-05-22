@@ -26,6 +26,7 @@ import Products from "../Product/Products";
 import { useSelector, useDispatch } from "react-redux";
 import { removeWishList } from "../../redux/WishReducer/action";
 import { addToCart, removeItem } from "../../redux/CartReducer/action";
+import { Link } from "react-router-dom";
 
 const WishList = () => {
   const wishlist = useSelector((store) => store.wishReducer.wishlist);
@@ -78,7 +79,9 @@ const WishList = () => {
               </g>
             </svg>
             <Heading>There is no wishlists yet</Heading>
-            <Button fontSize={"1.5rem"}>Go to Shop</Button>
+            <Link to="/handtools">
+              <Button fontSize={"1.5rem"}>Go to Shop</Button>
+            </Link>
           </Flex>
         ) : (
           <Grid

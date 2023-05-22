@@ -44,7 +44,7 @@ const About = () => {
           sx={{
             padding: "1rem",
             position: "absolute",
-            backgroundColor: "yellow",
+            backgroundColor: "#FFF700",
             borderRadius: "50%",
             top: "-3.5rem",
           }}
@@ -99,7 +99,7 @@ const About = () => {
           sx={{
             padding: "1rem",
             position: "absolute",
-            backgroundColor: "yellow",
+            backgroundColor: "#FFF700",
             borderRadius: "50%",
             top: "-3.5rem",
           }}
@@ -159,7 +159,7 @@ const About = () => {
           sx={{
             padding: "1rem",
             position: "absolute",
-            backgroundColor: "yellow",
+            backgroundColor: "#FFF700",
             borderRadius: "50%",
             top: "-3.5rem",
           }}

@@ -15,7 +15,7 @@ import styled from "styled-components";
 const BreadContainer = styled.div`
   width: 90vw;
   margin: 0 auto;
-  background-color: yellow;
+  background-color: #fff700;
   font-size: 1.6rem;
   padding: 3rem 0;
 `;
@@ -33,13 +33,15 @@ const PageNavbar = ({ currentPage }) => {
     return items;
   };
   return (
-    <Stack bgColor={"yellow"}>
+    <Stack bgColor={"#FFF700"}>
       <BreadContainer>
         <Flex gap={10} align={"center"} justifyContent={"space-between"}>
           <Text fontSize={"2rem"}>{currentPage.title}</Text>
           <Breadcrumb>
             <BreadcrumbItem>
-              <BreadcrumbLink href="/">Home</BreadcrumbLink>
+              <BreadcrumbLink as={Link} to="/">
+                Home
+              </BreadcrumbLink>
             </BreadcrumbItem>
 
             {getBreadcrumb().map((item, index) => (

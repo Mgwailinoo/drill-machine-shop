@@ -67,7 +67,7 @@ const CheckOutPage = (props) => {
                   <Th></Th>
                   <Th></Th>
                   <Th></Th>
-                  <Th>{props?.totalAmount}$</Th>
+                  <Th fontSize={"2rem"}>{props?.totalAmount}$</Th>
                   <Th>
                     <Button>Check Out</Button>
                   </Th>

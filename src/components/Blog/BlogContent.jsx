@@ -107,7 +107,7 @@ const BlogContent = () => {
                   margin={"2rem 0"}
                   p={"1.5rem"}
                   fontSize="1.3rem"
-                  bgColor={"#fed330"}
+                  bgColor={"#FFF700"}
                 >
                   READ MORE
                 </Button>
@@ -127,7 +127,7 @@ const BlogContent = () => {
             <Button
               p={"1.5rem"}
               fontSize="1.3rem"
-              bgColor={"#fed330"}
+              bgColor={"#FFF700"}
               disabled={currentPage === 1}
               onClick={() => setCurrentPage(currentPage - 1)}
             >
@@ -136,7 +136,7 @@ const BlogContent = () => {
             <Button
               p={"1.5rem"}
               fontSize="1.3rem"
-              bgColor={"#fed330"}
+              bgColor={"#FFF700"}
               disabled={currentPage === totalPages}
               onClick={() => setCurrentPage(currentPage + 1)}
             >

@@ -76,20 +76,20 @@ const ProductFilter = () => {
       <TabBox>
         <TabList borderBottom="transparent">
           <Tab
-            sx={{ fontSize: "2rem", margin: "0 0.5rem", bgColor: "yellow" }}
+            sx={{ fontSize: "2rem", margin: "0 0.5rem", bgColor: "#FFF700" }}
             _selected={{ color: "#fff", bgColor: "gray" }}
           >
             NEW PRODUCTS
           </Tab>
           <Tab
-            sx={{ fontSize: "2rem", margin: "0 0.5rem", bgColor: "yellow" }}
+            sx={{ fontSize: "2rem", margin: "0 0.5rem", bgColor: "#FFF700" }}
             _selected={{ color: "#fff", bgColor: "gray" }}
             onClick={() => filter("DRILLING")}
           >
             DRILLING
           </Tab>
           <Tab
-            sx={{ fontSize: "2rem", margin: "0 0.5rem", bgColor: "yellow" }}
+            sx={{ fontSize: "2rem", margin: "0 0.5rem", bgColor: "#FFF700" }}
             _selected={{ color: "#fff", bgColor: "gray" }}
             onClick={() => filter("BEST SELLER")}
           >
@@ -100,13 +100,13 @@ const ProductFilter = () => {
           <CustomIcon
             icon={<ChevronLeftIcon fontSize="3rem" />}
             ref={prevRef}
-            sx={{ bgColor: "yellow", boxSize: "3rem" }}
+            sx={{ bgColor: "#FFF700", boxSize: "3rem" }}
           />
 
           <CustomIcon
             icon={<ChevronRightIcon fontSize="3rem" />}
             ref={nextRef}
-            sx={{ bgColor: "yellow", boxSize: "3rem" }}
+            sx={{ bgColor: "#FFF700", boxSize: "3rem" }}
           />
         </Box>
       </TabBox>
