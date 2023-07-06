@@ -21,6 +21,7 @@ import { addToWishList, removeWishList } from "../../redux/WishReducer/action";
 const ListViewProduct = (props) => {
   const product = props.product;
   const [isAdd, setisAdd] = useState(false);
+  const carts = useSelector((store) => store.cart.cart);
   const dispatch = useDispatch();
   const toast = useToast();
   const wishlist = useSelector((store) => store.wishReducer.wishlist);
@@ -29,6 +30,7 @@ const ListViewProduct = (props) => {
 
   useEffect(() => {
     setIsInWishlist(wishlist.some((item) => item.id === product.id));
+    setisAdd(carts.some((item) => item.id === product.id));
   }, [wishlist, product]);
 
   const handleAddCart = () => {

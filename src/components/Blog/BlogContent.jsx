@@ -8,7 +8,7 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   AiOutlineComment,
   AiOutlineEye,
@@ -49,6 +49,20 @@ const BlogContent = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
 
+  const topRef = useRef();
+
+  const executeScroll = () => topRef?.current?.scrollIntoView();
+
+  const prevPage = () => {
+    executeScroll();
+    setCurrentPage((prev) => prev - 1);
+  };
+
+  const nextPage = () => {
+    executeScroll();
+    setCurrentPage((prev) => prev + 1);
+  };
+
   const displayedArticles = blogArticle.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
@@ -56,9 +70,14 @@ const BlogContent = () => {
 
   return (
     <>
-      <Stack direction={"column"} width={"100vw"} margin={"0 auto"}>
+      <Stack
+        ref={topRef}
+        direction={"column"}
+        width={"100vw"}
+        margin={"0 auto"}
+      >
         {displayedArticles.map((blog) => (
-          <Box mb={5}>
+          <Box key={blog} mb={5}>
             <Stack
               direction="row"
               backgroundColor="gray.100"
@@ -129,7 +148,7 @@ const BlogContent = () => {
               fontSize="1.3rem"
               bgColor={"#FFF700"}
               disabled={currentPage === 1}
-              onClick={() => setCurrentPage(currentPage - 1)}
+              onClick={prevPage}
             >
               1
             </Button>
@@ -138,7 +157,7 @@ const BlogContent = () => {
               fontSize="1.3rem"
               bgColor={"#FFF700"}
               disabled={currentPage === totalPages}
-              onClick={() => setCurrentPage(currentPage + 1)}
+              onClick={nextPage}
             >
               2
             </Button>

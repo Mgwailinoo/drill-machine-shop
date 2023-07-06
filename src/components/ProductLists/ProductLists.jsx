@@ -19,36 +19,41 @@ import {
   ButtonGroup,
   Grid,
 } from "@chakra-ui/react";
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 
 import img from "../../assets/img/blog/BlogArticle1.jpg";
-import { AiOutlineHeart, AiOutlineRightCircle } from "react-icons/ai";
+import { AiOutlineRightCircle } from "react-icons/ai";
 import { BsCardList, BsGrid } from "react-icons/bs";
 import { MdArrowDropDown } from "react-icons/md";
 import Products from "../Product/Products";
 import Product from "../Product/Product";
-import { StarIcon, ViewIcon } from "@chakra-ui/icons";
+import { useSelector } from "react-redux";
 import ListViewProduct from "./ListViewProduct";
-import { useHistory } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const ProductLists = () => {
   const [showGrid, setShowGrid] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const carts = useSelector((store) => store.cart.cart);
+
   const [itemsPerPage, setItemsPerPage] = useState(Products.length); // <-- new state
-  const history = useHistory();
+  console.log(carts, "Carts");
   const totalItems = Products.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage); // <-- use the new state variable
   const startIndex = (currentPage - 1) * itemsPerPage; // <-- use the new state variable
   const endIndex = startIndex + itemsPerPage; // <-- use the new state variable
   const currentItems = Products.slice(startIndex, endIndex);
+  const topRef = useRef(null);
 
   const handlePrevPage = () => {
     setCurrentPage((prev) => prev - 1);
   };
 
+  const executeScroll = () => topRef?.current?.scrollIntoView();
+
   const handleNextPage = () => {
+    executeScroll();
     setCurrentPage((prev) => prev + 1);
-    history.push(`/page/${currentPage + 1}`);
   };
 
   const handlePageClick = (page) => {
@@ -159,7 +164,7 @@ const ProductLists = () => {
 
       <>
         {showGrid ? (
-          <>
+          <div ref={topRef} className="Hello World">
             <Grid templateColumns="repeat(3, 1fr)" gap={10} width="100%">
               {currentItems.map((product) => (
                 <GridItem width={"100%"}>
@@ -167,12 +172,14 @@ const ProductLists = () => {
                 </GridItem>
               ))}
             </Grid>
-          </>
+          </div>
         ) : (
           <>
-            {currentItems.map((product) => (
-              <ListViewProduct product={product} />
-            ))}
+            <div ref={topRef}>
+              {currentItems.map((product) => (
+                <ListViewProduct key={product.id} product={product} />
+              ))}
+            </div>
           </>
         )}
       </>
