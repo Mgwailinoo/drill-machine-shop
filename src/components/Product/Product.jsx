@@ -22,9 +22,10 @@ import {
 } from "@chakra-ui/react";
 
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { StarIcon, ViewIcon } from "@chakra-ui/icons";
 import { AiOutlineHeart } from "react-icons/ai";
+
 import {
   addToCart,
   removeItem,
@@ -37,24 +38,34 @@ const Product = (props) => {
   const product = props.product;
   const [isAdd, setisAdd] = useState(false);
   const dispatch = useDispatch();
-  const toast = useToast();
+
   const wishlist = useSelector((store) => store.wishReducer.wishlist);
   const carts = useSelector((store) => store.cart.cart);
   const [currentProducts, setCurrentProducts] = useState(product);
-  console.log(carts, "Shopping Cart");
+
   const [isInWishlist, setIsInWishlist] = useState(false);
-  const [qty, setQty] = useState(null);
-  console.log(qty, "Qty hey");
-  console.log(product, "Product hey");
-  useEffect(() => {
-    setisAdd(carts.some((item) => item.id === product.id));
-    setQty(carts.qty);
-    setIsInWishlist(wishlist.some((item) => item.id === product.id));
-  }, [wishlist, product, carts]);
+
+  const [cartQty, setCartQty] = useState({});
 
   useEffect(() => {
-    console.log(isAdd, "isAdd");
-  }, [isAdd]);
+    // Check if the product is in the cart
+    const isProductInCart = carts.some((item) => item.id === product.id);
+    setisAdd(isProductInCart);
+
+    // Get the quantity for each product in the cart
+    const cartQuantities = {};
+
+    for (const item of carts) {
+      const { id, qty } = item;
+      cartQuantities[id] = (cartQuantities[id] || 0) + qty;
+    }
+
+    setCartQty(cartQuantities);
+
+    // Check if the product is in the wishlist
+    const isInWishlist = wishlist.some((item) => item.id === product.id);
+    setIsInWishlist(isInWishlist);
+  }, [carts, wishlist, product]);
 
   const handleAddCart = () => {
     let payload = {
@@ -154,16 +165,18 @@ const Product = (props) => {
             </Button>
 
             <Button variant="solid" colorScheme="blue" size="lg">
-              <ViewIcon />
+              <Link to={`/productdetails/${product.id}`}>
+                <ViewIcon />
+              </Link>
             </Button>
           </ButtonGroup>
 
-          {/* {isAdd && (
+          {isAdd && (
             <NumberInput
               size="lg"
-              defaultValue={qty}
+              defaultValue={cartQty[product.id] || ""}
               min={1}
-              onChange={() => event.target.value()}
+              onChange={() => event.target.value}
             >
               <Flex align={"center"}>
                 <NumberDecrementStepper
@@ -192,7 +205,7 @@ const Product = (props) => {
                 />
               </Flex>
             </NumberInput>
-          )} */}
+          )}
         </CardFooter>
       </Card>
     </>

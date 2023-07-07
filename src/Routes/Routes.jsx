@@ -10,6 +10,7 @@ import Electrical from "../components/Electrical/Electrical";
 import Cart from "../components/Cart/Cart";
 import WishList from "../components/WishList/WishList";
 import CustomPayment from "../components/Payment/CustomPayment";
+import ProductDetails from "../components/ProductDetails/ProductDetails";
 const Routes = () => {
   return (
     <Router>
@@ -23,6 +24,7 @@ const Routes = () => {
       <Route path="/cart" element={<Cart />} />
       <Route path="/wishlist" element={<WishList />} />
       <Route path="/payment" element={<CustomPayment />} />
+      <Route path="/productdetails/:id" element={<ProductDetails />} />
     </Router>
   );
 };

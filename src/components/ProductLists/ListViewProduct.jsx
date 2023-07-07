@@ -12,11 +12,18 @@ import {
   Stack,
   Text,
   useToast,
+  NumberDecrementStepper,
+  NumberIncrementStepper,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
 } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import { AiOutlineHeart } from "react-icons/ai";
 import { useSelector, useDispatch } from "react-redux";
+import { incQty, decQty } from "../../redux/CartReducer/action";
 import { addToCart, removeItem } from "../../redux/CartReducer/action";
+import { Link } from "react-router-dom";
 import { addToWishList, removeWishList } from "../../redux/WishReducer/action";
 const ListViewProduct = (props) => {
   const product = props.product;
@@ -28,10 +35,27 @@ const ListViewProduct = (props) => {
   const [currentProducts, setCurrentProducts] = useState(product);
   const [isInWishlist, setIsInWishlist] = useState(false);
 
+  const [cartQty, setCartQty] = useState({});
+
   useEffect(() => {
-    setIsInWishlist(wishlist.some((item) => item.id === product.id));
-    setisAdd(carts.some((item) => item.id === product.id));
-  }, [wishlist, product]);
+    // Check if the product is in the cart
+    const isProductInCart = carts.some((item) => item.id === product.id);
+    setisAdd(isProductInCart);
+
+    // Get the quantity for each product in the cart
+    const cartQuantities = {};
+
+    for (const item of carts) {
+      const { id, qty } = item;
+      cartQuantities[id] = (cartQuantities[id] || 0) + qty;
+    }
+
+    setCartQty(cartQuantities);
+
+    // Check if the product is in the wishlist
+    const isInWishlist = wishlist.some((item) => item.id === product.id);
+    setIsInWishlist(isInWishlist);
+  }, [carts, wishlist, product]);
 
   const handleAddCart = () => {
     let payload = {
@@ -47,6 +71,14 @@ const ListViewProduct = (props) => {
     };
     dispatch(removeItem(payload));
     setisAdd(false);
+  };
+
+  const handleIncrement = (id) => {
+    dispatch(incQty({ id }));
+  };
+
+  const handleDecrement = (id) => {
+    dispatch(decQty({ id }));
   };
 
   const handleAddWishList = () => {
@@ -104,8 +136,20 @@ const ListViewProduct = (props) => {
           </CardBody>
 
           <Divider />
-          <CardFooter>
-            <ButtonGroup spacing="2">
+          <CardFooter
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              flexWrap: "wrap",
+              gap: 5,
+            }}
+          >
+            <ButtonGroup
+              spacing="2"
+              sx={{
+                flex: 1,
+              }}
+            >
               <Button
                 variant="solid"
                 colorScheme={isInWishlist ? "yellow" : "blue"}
@@ -135,9 +179,49 @@ const ListViewProduct = (props) => {
                 padding={"2rem "}
                 fontSize="2rem"
               >
-                <ViewIcon />
+                <Link to={`/productdetails/${product.id}`}>
+                  <ViewIcon />
+                </Link>
               </Button>
             </ButtonGroup>
+            {isAdd && (
+              <NumberInput
+                size="lg"
+                defaultValue={cartQty[product.id] || ""}
+                min={1}
+                onChange={() => event.target.value()}
+                sx={{
+                  flex: 1,
+                }}
+              >
+                <Flex align={"center"}>
+                  <NumberDecrementStepper
+                    bg="pink.200"
+                    _active={{ bg: "pink.300" }}
+                    children="-"
+                    fontSize={"2rem"}
+                    size="lg"
+                    padding={"0.2rem 0"}
+                    onClick={() => handleDecrement(product.id)}
+                  />
+                  <NumberInputField
+                    focusBorderColor="red.200"
+                    width="80px"
+                    fontSize={"1.5rem"}
+                    textAlign={"center"}
+                  />
+                  <NumberIncrementStepper
+                    bg="green.200"
+                    _active={{ bg: "green.300" }}
+                    children="+"
+                    fontSize={"2rem"}
+                    size="lg"
+                    padding={"0.2rem 0"}
+                    onClick={() => handleIncrement(product.id)}
+                  />
+                </Flex>
+              </NumberInput>
+            )}
           </CardFooter>
         </Stack>
       </Card>

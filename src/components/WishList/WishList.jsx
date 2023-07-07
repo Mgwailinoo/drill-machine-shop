@@ -1,4 +1,3 @@
-import { CloseIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
@@ -9,12 +8,8 @@ import {
   Divider,
   Flex,
   Heading,
-  HStack,
   Image,
   Stack,
-  Tag,
-  TagCloseButton,
-  TagLabel,
   Text,
   Grid,
   GridItem,
@@ -25,11 +20,16 @@ import React, { useState } from "react";
 import Products from "../Product/Products";
 import { useSelector, useDispatch } from "react-redux";
 import { removeWishList } from "../../redux/WishReducer/action";
-import { addToCart, removeItem } from "../../redux/CartReducer/action";
+
 import { Link } from "react-router-dom";
 
 const WishList = () => {
   const wishlist = useSelector((store) => store.wishReducer.wishlist);
+  // const ProductId = Products.map((p) => p.id);
+  // const wishlistId = wishlist.map((p) => p.id);
+
+  // const Product = Products.find((p) => wishlistId.includes(p.id));
+
   const dispatch = useDispatch();
 
   return (
@@ -91,7 +91,7 @@ const WishList = () => {
             margin={"2rem 0"}
           >
             {wishlist.map((p) => (
-              <GridItem>
+              <GridItem key={p.id}>
                 <Card size={"md"}>
                   <Box position="relative">
                     <CloseButton
@@ -113,12 +113,11 @@ const WishList = () => {
                     <Divider />
                     <CardFooter>
                       <ButtonGroup spacing="10">
-                        <Button variant="solid" colorScheme="blue">
-                          Buy now
-                        </Button>
-                        <Button variant="ghost" colorScheme="blue">
-                          Details
-                        </Button>
+                        <Link to={`/detailproducts/${p.id}`}>
+                          <Button variant="solid" colorScheme="blue">
+                            Details
+                          </Button>
+                        </Link>
                       </ButtonGroup>
                     </CardFooter>
                   </Box>

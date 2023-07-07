@@ -21,7 +21,7 @@ import {
   TableCaption,
   TableContainer,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 
 import Products from "../Product/Products";
 import { Link } from "react-router-dom";
@@ -36,6 +36,13 @@ const Cart = () => {
   const totalAmount = cart.reduce((total, item) => {
     return total + item.price * Number(item.qty);
   }, 0);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+  }, []);
+
   const handleClear = () => {
     dispatch(clearItem(cart));
   };
