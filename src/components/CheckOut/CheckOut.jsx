@@ -22,6 +22,7 @@ const CheckOut = ({
   email,
   isPurchase,
   setIsPurchase,
+  handleClear,
 }) => {
   const toast = useToast();
 
@@ -138,6 +139,7 @@ const CheckOut = ({
             }}
             colorScheme="linkedin"
             onClick={() => {
+              handleClear()
               setIsPurchase(!isPurchase);
               toast({
                 position: "top-right",

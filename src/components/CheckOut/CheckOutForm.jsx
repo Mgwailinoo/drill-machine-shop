@@ -3,7 +3,12 @@ import { Container, Flex, Box } from "@chakra-ui/react";
 import Order from "./Order";
 import CheckOut from "./CheckOut";
 import { useSelector, useDispatch } from "react-redux";
-import { incQty, decQty, removeItem } from "../../redux/CartReducer/action";
+import {
+  incQty,
+  decQty,
+  removeItem,
+  clearItem,
+} from "../../redux/CartReducer/action";
 const CheckOutForm = () => {
   const carts = useSelector((store) => store.cart.cart);
   const username = useSelector((store) => store.user.username);
@@ -24,6 +29,10 @@ const CheckOutForm = () => {
 
   const handleRemove = (id) => {
     dispatch(removeItem({ id }));
+  };
+
+  const handleClear = () => {
+    dispatch(clearItem(carts));
   };
 
   return (
@@ -59,6 +68,7 @@ const CheckOutForm = () => {
           email={email}
           isPurchase={isPurchase}
           setIsPurchase={setIsPurchase}
+          handleClear={handleClear}
         />
       </Box>
     </Container>

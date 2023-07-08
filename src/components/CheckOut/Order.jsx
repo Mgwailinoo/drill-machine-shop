@@ -45,7 +45,7 @@ const Order = ({
           }}
         >
           <Box marginBottom={"10px"}>
-            <Heading marginBottom={5}>no order now</Heading>
+            <Heading marginBottom={5}>Thanks for Purchase</Heading>
             <Link to="/handtools">
               <Badge colorScheme="green" fontSize={"20px"} p={5}>
                 Go to Shop
