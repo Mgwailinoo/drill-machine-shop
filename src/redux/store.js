@@ -7,6 +7,7 @@ import {
 import thunk from "redux-thunk";
 import { cartReducer } from "./CartReducer/reducer";
 import { wishReducer } from "./WishReducer/wishReducer";
+import userReducer from "./UserReducer/userReducer";
 import {
   persistStore,
   persistReducer,
@@ -21,7 +22,7 @@ import storage from "redux-persist/lib/storage";
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const rootReducer = combineReducers({
   cart: cartReducer,
-
+  user: userReducer,
   wishReducer,
 });
 

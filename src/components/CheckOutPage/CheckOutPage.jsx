@@ -18,12 +18,14 @@ import {
   TableCaption,
   TableContainer,
 } from "@chakra-ui/react";
-import Products from "../Product/Products";
-import CustomPayment from "../Payment/CustomPayment";
+
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
 const CheckOutPage = (props) => {
   const cart = props.cart;
+  const isLoggedIn = useSelector((store) => store.user.isLoggedIn);
+  console.log("isLoggedIn", isLoggedIn);
   return (
     <>
       <Box w="100%" m="auto">
@@ -69,7 +71,15 @@ const CheckOutPage = (props) => {
                   <Th></Th>
                   <Th fontSize={"2rem"}>{props?.totalAmount}$</Th>
                   <Th>
-                    <Button>Check Out</Button>
+                    {isLoggedIn === false ? (
+                      <Link to="/authenticate">
+                        <Button>Check Out</Button>
+                      </Link>
+                    ) : (
+                      <Link to="/checkoutform">
+                        <Button>Check Out</Button>
+                      </Link>
+                    )}
                   </Th>
                 </Tr>
               </Tfoot>

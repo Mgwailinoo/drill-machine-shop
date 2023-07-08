@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react";
-
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import {
@@ -9,12 +7,10 @@ import {
   MenuItem,
   InputGroup,
   InputRightElement,
-  useDisclosure,
   Popover,
   PopoverTrigger,
   PopoverContent,
   useColorModeValue,
-  useBreakpointValue,
   Stack,
   Box,
   Icon,
@@ -23,8 +19,6 @@ import {
   TabList,
   TabPanels,
   Tab,
-  TabPanel,
-  Button,
 } from "@chakra-ui/react";
 
 import {
@@ -34,7 +28,9 @@ import {
 } from "@chakra-ui/icons";
 import { Input } from "@chakra-ui/react";
 import { NAV_ITEMS } from "./NavItem";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../../redux/UserReducer/userReducer";
+import { useNavigate } from "react-router-dom";
 
 const NavbarContainer = styled.nav`
   display: flex;
@@ -183,11 +179,18 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
 };
 
 const Navbar = () => {
-  // const [show, setShow] = useState(false);
-  // const handleClick = () => setShow(!show);
   const wishlist = useSelector((store) => store.wishReducer.wishlist);
   const cart = useSelector((store) => store.cart.cart);
+  const isLoggedIn = useSelector((store) => store.user.isLoggedIn);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    // Dispatch the logout action
+    dispatch(logout());
 
+    // Navigate to the desired page
+    navigate("/authenticate");
+  };
   return (
     <>
       <NavbarContainer>
@@ -236,7 +239,11 @@ const Navbar = () => {
                       </MenuItem>
                     </MenuList>
                   </Menu>
-                  <Link to="/authenticate">Sign Up</Link>
+                  {isLoggedIn === true ? (
+                    <button onClick={handleLogout}>logout</button>
+                  ) : (
+                    <Link to="/authenticate">Sign Up</Link>
+                  )}
                 </div>
               </Flex>
             </Flex>

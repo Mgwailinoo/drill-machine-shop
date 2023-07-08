@@ -11,6 +11,7 @@ import Cart from "../components/Cart/Cart";
 import WishList from "../components/WishList/WishList";
 import CustomPayment from "../components/Payment/CustomPayment";
 import ProductDetails from "../components/ProductDetails/ProductDetails";
+import CheckOutForm from "../components/CheckOut/CheckOutForm";
 const Routes = () => {
   return (
     <Router>
@@ -25,6 +26,7 @@ const Routes = () => {
       <Route path="/wishlist" element={<WishList />} />
       <Route path="/payment" element={<CustomPayment />} />
       <Route path="/productdetails/:id" element={<ProductDetails />} />
+      <Route path="/checkoutform" element={<CheckOutForm />} />
     </Router>
   );
 };

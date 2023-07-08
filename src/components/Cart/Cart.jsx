@@ -29,6 +29,7 @@ import CartItem from "./CartItem";
 import CheckOutPage from "../CheckOutPage/CheckOutPage";
 import { clearItem } from "../../redux/CartReducer/action";
 import { useSelector, useDispatch } from "react-redux";
+
 const Cart = () => {
   const cart = useSelector((store) => store.cart.cart);
   const dispatch = useDispatch();
