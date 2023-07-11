@@ -184,6 +184,10 @@ const Navbar = () => {
   const isLoggedIn = useSelector((store) => store.user.isLoggedIn);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const totalAmount = cart.reduce((total, item) => {
+    return total + item.price * Number(item.qty);
+  }, 0);
   const handleLogout = () => {
     // Dispatch the logout action
     dispatch(logout());
@@ -382,7 +386,7 @@ const Navbar = () => {
                   <div>
                     <p>Shopping Cart</p>
                     <span>
-                      No items - <p>$0.00</p>
+                      {cart.length} items - <p>$ {totalAmount} USD</p>
                     </span>
                   </div>
                 </Link>
