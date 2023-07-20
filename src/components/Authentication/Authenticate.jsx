@@ -117,7 +117,7 @@ const Authenticate = () => {
                     >
                       Sign in
                     </Button>
-                    <Button bgColor={"white"} marginBottom={"20px"}>
+{/*                     <Button bgColor={"white"} marginBottom={"20px"}>
                       <GoogleLogin
                         onSuccess={(credentialResponse) => {
                           event.preventDefault();
@@ -146,7 +146,7 @@ const Authenticate = () => {
                           console.log("Login Failed");
                         }}
                       />
-                    </Button>
+                    </Button> */}
                   </ButtonGroup>
                 </Stack>
               </form>
